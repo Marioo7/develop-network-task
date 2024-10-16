@@ -1,0 +1,35 @@
+<div class="task-filter">
+  <select [(ngModel)]="filter">
+    <option value="all">All Tasks</option>
+    <option value="completed">Completed Tasks</option>
+    <option value="pending">Pending Tasks</option>
+  </select>
+</div>
+<div class="mt-5">
+  <table class="m-0 table table-success table-striped">
+    <thead>
+      <tr>
+        <th class="ps-3" scope="col">Name</th>
+        <th class="ps-4 ps-md-5" scope="col">Status</th>
+        <th class="ps-2" scope="col">Items List</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<div class="task-list">
+  <ng-container *ngIf="filteredTasks().length > 0; else notFound">
+    <app-task-item
+      *ngFor="let task of filteredTasks()"
+      [task]="task"
+      (toggle)="toggleCompletion(task)"
+    ></app-task-item>
+  </ng-container>
+  <ng-template #notFound>
+    <p class="text-danger" *ngIf="filter === 'completed'">
+      No completed tasks found.
+    </p>
+    <p class="text-danger" *ngIf="filter === 'pending'">
+      No pending tasks found.
+    </p>
+  </ng-template>
+</div>

@@ -1,0 +1,65 @@
+<!-- Status Message -->
+<div
+  *ngIf="globalStatusMessage"
+  class="global-status-message"
+  [ngStyle]="{ 'background-color': globalMessageBackgroundColor }"
+>
+  <p>{{ globalStatusMessage }}</p>
+</div>
+
+<!-- Task Table -->
+<table class="m-0 table table-success table-striped">
+  <tbody>
+    <tr>
+      <!-- Display the main task -->
+      <td>{{ task.title }}</td>
+      <td>
+        <label class="switch">
+          <input
+            type="checkbox"
+            [checked]="task.completed"
+            (change)="toggleTask(task)"
+          />
+          <span class="slider"></span>
+        </label>
+      </td>
+      <td>
+        <button (click)="toggleExpand()" class="btn btn-primary">
+          {{ isExpanded ? "▼" : "▶" }}
+        </button>
+      </td>
+    </tr>
+
+    <!-- Expanded Child Tasks Row -->
+    <tr *ngIf="isExpanded" class="table-active">
+      <td colspan="3">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>{{ task.title }}</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let childTask of task.childTasks">
+              <!-- Display child task -->
+              <td>{{ childTask.name }}</td>
+              <td>{{ childTask.completed ? "Completed" : "Pending" }}</td>
+              <td>
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [checked]="childTask.completed"
+                    (change)="toggleChildTask(task, childTask)"
+                  />
+                  <span class="slider"></span>
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

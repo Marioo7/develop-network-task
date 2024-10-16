@@ -1,0 +1,61 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Task A",
+      "completed": true,
+      "childTasks": [
+        {
+          "name": "Item 1",
+          "completed": true
+        },
+        {
+          "name": "Item 2",
+          "completed": true
+        },
+        {
+          "name": "Item 3",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Task B",
+      "completed": false,
+      "childTasks": [
+        {
+          "name": "Item 11",
+          "completed": false
+        },
+        {
+          "name": "Item 12",
+          "completed": false
+        },
+        {
+          "name": "Item 13",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Task C",
+      "completed": false,
+      "childTasks": [
+        {
+          "name": "Item 21",
+          "completed": false
+        },
+        {
+          "name": "Item 22",
+          "completed": false
+        },
+        {
+          "name": "Item 23",
+          "completed": false
+        }
+      ]
+    }
+  ]
+}
